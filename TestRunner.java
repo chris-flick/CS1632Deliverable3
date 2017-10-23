@@ -11,7 +11,7 @@ public class TestRunner {
 
 	// ADD ANY MORE CLASSES YOU WISH TO TEST HERE
 	
-	classesToTest.add(Foo.class);
+	classesToTest.add(D3Test.class);
 	
 	// For all test classes added, loop through and use JUnit
 	// to run them.
@@ -22,7 +22,7 @@ public class TestRunner {
 	    // Print out any failures for this class.
       
 	    for (Failure f : r.getFailures()) {
-		System.out.println(f.toString());
+			System.out.println(f.toString());
 	    }
 
 	    // If r is not successful, there was at least one

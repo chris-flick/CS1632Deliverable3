@@ -15,4 +15,17 @@ public class D3Test{
 	public void setUp() throws Exception {
 		driver.get("https://cs1632ex.herokuapp.com");
 	}
+
+	@Test
+	public void homepageWelcomeMessage(){
+
+		try{
+			WebElement e = driver.findElement(By.className("container"));
+			String elementText = e.getText();
+			assertTrue(elementText.contains("Welcome, friend, to a land of pure calculation"));
+		}
+		catch(NoSuchElementException nseex){
+			fail();
+		}
+	}
 }
