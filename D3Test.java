@@ -20,9 +20,10 @@ public class D3Test{
 	public void homepageWelcomeMessage(){
 
 		try{
-			WebElement e = driver.findElement(By.className("container"));
+			WebElement e = driver.findElement(By.className("jumbotron"));
 			String elementText = e.getText();
-			assertTrue(elementText.contains("Welcome, friend, to a land of pure calculation"));
+			assertTrue(elementText.contains("Welcome, friend,"));
+			assertTrue(elementText.contains("to a land of pure calculation"));
 		}
 		catch(NoSuchElementException nseex){
 			fail();
