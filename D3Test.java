@@ -44,8 +44,8 @@ public class D3Test{
 	}
 
 
-
-	@Test
+	//Test for requirement 1
+	@Test //Test #1
 	public void homepageWelcomeMessage(){
 
 		try{
@@ -59,10 +59,11 @@ public class D3Test{
 		}
 	}
 
-	//Testing to see if there are links
-	@Test
-	public void linkTest(){
 
+	//Testing to see if there are link TEXT.
+	//Test for requirement 2
+	@Test //Test #2
+	public void linkTextTest(){
 		try{
 			driver.findElement(By.linkText("CS1632 D3 Home"));
 			driver.findElement(By.linkText("Factorial"));
@@ -73,4 +74,50 @@ public class D3Test{
 			fail();
 		}
 	}
+
+	//Testing the actual linkTest
+	//Test for requirement 2
+	@Test //Test #3
+	public void linkTest(){
+		String linkHello = "https://cs1632ex.herokuapp.com/hello";
+		String linkHome = "https://cs1632ex.herokuapp.com/";
+		String linkFactorial = "https://cs1632ex.herokuapp.com/fact";
+		String linkFib = "https://cs1632ex.herokuapp.com/fib";
+		String linkCathy = "https://cs1632ex.herokuapp.com/cathy";
+
+		WebElement link = driver.findElement(By.linkText("CS1632 D3 Home"));
+		assertEquals(link.getAttribute("href"),linkHome);
+
+		link = driver.findElement(By.linkText("Factorial"));
+		assertEquals(link.getAttribute("href"),linkFactorial);
+
+		link = driver.findElement(By.linkText("Fibonacci"));
+		assertEquals(link.getAttribute("href"),linkFib);
+
+		link = driver.findElement(By.linkText("Cathedral Pics"));
+		assertEquals(link.getAttribute("href"),linkCathy);
+
+		link = driver.findElement(By.linkText("Hello"));
+		assertEquals(link.getAttribute("href"),linkHello);
+	}
+
+	//Testing the Fibonacci functionality
+	//Test for requirement 3
+	@Test //Test #4
+	public void fibTest(){
+		driver.get("https://cs1632ex.herokuapp.com/fact");
+
+		driver.findElement(By.name("value")).sendKeys("5");
+		driver.findElement(By.xpath("/html/body/div/main/div/form/input[2]")).click();
+		String result = driver.findElement(By.className("jumbotron")).getText();
+		assertTrue(result.contains("Factorial of 5 is 120!"));
+
+
+
+
+	}
+
+
+
+
 }
