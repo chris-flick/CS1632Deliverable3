@@ -248,10 +248,11 @@ public class D3Test{
 
 
 	/* -------------------------------------------------------- Defects ---------------------------------------------------- */
-	/*
+
 	//If I'm on the fibonacci page, and I enter 100, it should
 	//produce a result that states, "Fibonacci of 100 is 354224848179261915075!"
 	//Any number outside of 1-100 should have a factorial result of 1.
+	//Fails because it does not produce 1.
 	//Test for requirement 5
 	@Test //Test #15
 	public void fibTest_2(){
@@ -266,75 +267,115 @@ public class D3Test{
 	//If I'm on the fibonacci page, and I enter a, it should
 	//produce a result that states, "Fibonacci of a is 1!"
 	//Any number outside of 1-100 should have a factorial result of 1.
+	//Fails because it does not produce 1.
 	//Test for requirement 5
 	@Test //Test #16
 	public void fibTest_6(){
+		try{
 		driver.get("https://cs1632ex.herokuapp.com/fib");
 		driver.findElement(By.id("tb1")).sendKeys("a");
 		driver.findElement(By.id("sub")).click();
 		String result = driver.findElement(By.className("jumbotron")).getText();
 		assertTrue(result.contains("Fibonacci of a is 1!"));
+		}catch(NoSuchElementException e){
+		fail();
+		}
 	}
 
 	//If I'm on the factorial page, and I enter a, it should
 	//produce a result that states, "Factorial of a is 1!"
 	//Any number outside of 1-100 should have a factorial result of 1.
+	//Fails because it does not produce 1.
 	//Test for requirement 5
 	@Test //Test #17
 	public void factTest_5(){
+		try{
 		driver.get("https://cs1632ex.herokuapp.com/fact");
 		driver.findElement(By.name("value")).sendKeys("a");
 		driver.findElement(By.xpath("/html/body/div/main/div/form/input[2]")).click();
 		String result = driver.findElement(By.className("jumbotron")).getText();
 		assertTrue(result.contains("Factorial of a is 1!"));
+	}catch(NoSuchElementException e){
+		fail();
+	}
 	}
 
 	//If I add the trailing value of "/Jazzy#123"
 	//To /hello, it should display "Hello CS1632, from Jazzy#123!"
+	//Fails because it does not displays what is expected
 	//Test for requirement 7
 	@Test //Test #18
-	public void helloTest_3(){
+	public void helloTest_4(){
 		driver.get("https://cs1632ex.herokuapp.com/hello/Jazzy#123");
 		String result = driver.findElement(By.className("jumbotron")).getText();
-		assertEquals(result,"Hello CS1632, from Jazzy#123!");
+		assertEquals("Hello CS1632, from Jazzy#123!",result);
 	}
 
 	//If I add the trailing value of "/Jazzy/123"
 	//To /hello, it should display "Hello CS1632, from Jazzy/123!"
+	//Fails because it does not displays what is expected
 	//Test for requirement 7
 	@Test //Test #19
-	public void helloTest_4(){
+	public void helloTest_5(){
 		try{
 		driver.get("https://cs1632ex.herokuapp.com/hello/Jazzy/123");
 		String result = driver.findElement(By.className("jumbotron")).getText();
-		assertEquals(result,"Hello CS1632, from Jazzy/123!");
-	}catch(Exception e){
+		assertEquals("Hello CS1632, from Jazzy/123!",result);
+	}catch(NoSuchElementException e){
 		fail();
 	}
 	}
 
 	//If I add the trailing value of "/ "
 	//To /hello, it should display "Hello CS1632, from  !"
+	//Fails because it does not displays what is expected
 	//Test for requirement 7
 	@Test //Test #20
-	public void helloTest_5(){
+	public void helloTest_6(){
 		driver.get("https://cs1632ex.herokuapp.com/hello/ ");
 		String result = driver.findElement(By.className("jumbotron")).getText();
-		assertEquals(result,"Hello CS1632, from  !");
+		assertEquals("Hello CS1632, from  !",result);
 	}
-	*/
+
+	//If i'm on the factorial page and I do not enter anything
+	//It should display the factorial of null is 1.
+	//Test for requirement 5
+	@Test //Test #21
+	public void factTest_6(){
+		try{
+			driver.get("https://cs1632ex.herokuapp.com/fact");
+			driver.findElement(By.xpath("/html/body/div/main/div/form/input[2]")).click();
+			String result = driver.findElement(By.className("jumbotron")).getText();
+		}catch(NoSuchElementException e){
+			fail();
+		}
+	}
+
+	//If I'm on the fibonacci page and I do not enter anything
+	//It should display the fibonacci of null is 1.
+	//Test for requirement 5
+	@Test //Test #22
+	public void fibTest_7(){
+		try{
+			driver.get("https://cs1632ex.herokuapp.com/fib");
+			driver.findElement(By.id("sub")).click();
+			String result = driver.findElement(By.className("jumbotron")).getText();
+		}catch(NoSuchElementException e){
+			fail();
+		}
+	}
+
 	/* ------------------------------------------------------ End Defects -------------------------------------------------- */
 
 	//If I'm on the factorial page, and I enter 100, it should
 	//produce a result that states, "Factorial of 100 is 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000!"
 	//Test for requirement 5
-	@Test //Test #21
-	public void factTest_6(){
+	@Test //Test #23
+	public void factTest_7(){
 		driver.get("https://cs1632ex.herokuapp.com/fact");
 		driver.findElement(By.name("value")).sendKeys("100");
 		driver.findElement(By.xpath("/html/body/div/main/div/form/input[2]")).click();
 		String result = driver.findElement(By.className("jumbotron")).getText();
-		System.out.println(result);
 		assertTrue(result.contains("Factorial of 100 is 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000!"));
 	}
 
