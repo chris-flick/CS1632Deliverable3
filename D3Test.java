@@ -101,23 +101,48 @@ public class D3Test{
 		assertEquals(link.getAttribute("href"),linkHello);
 	}
 
-	//Testing the Fibonacci functionality
+	//Testing the Factorial functionality when given 5
 	//Test for requirement 3
+	//Used xpath because that specific button... has no name or id... and there isnt byValue lookup.
 	@Test //Test #4
-	public void fibTest(){
+	public void fibTest_1(){
 		driver.get("https://cs1632ex.herokuapp.com/fact");
-
 		driver.findElement(By.name("value")).sendKeys("5");
 		driver.findElement(By.xpath("/html/body/div/main/div/form/input[2]")).click();
 		String result = driver.findElement(By.className("jumbotron")).getText();
 		assertTrue(result.contains("Factorial of 5 is 120!"));
-
-
-
-
+	}
+	//Testing the Factorial functionality
+	//If this test passes, then it is a defect. The factorial functionality should only accept 1-100
+	//Test for requirement 3
+	@Test //Test #5.
+	public void fibTest_2(){
+		driver.get("https://cs1632ex.herokuapp.com/fact");
+		driver.findElement(By.name("value")).sendKeys("0");
+		driver.findElement(By.xpath("/html/body/div/main/div/form/input[2]")).click();
+		String result = driver.findElement(By.className("jumbotron")).getText();
+		assertTrue(result.contains("Factorial of 0 is 1!"));
 	}
 
+	//Testing the Factorial functionality when given 100
+	//Test for requirement 3
+	@Test
+	public void fibTest_3(){
+		driver.get("https://cs1632ex.herokuapp.com/fact");
+		driver.findElement(By.name("value")).sendKeys("1");
+		driver.findElement(By.xpath("/html/body/div/main/div/form/input[2]")).click();
+		String result = driver.findElement(By.className("jumbotron")).getText();
+		assertTrue(result.contains("Factorial of 1 is 1!"));
+	}
 
+	@Test
+	public void fibTest_4(){
+		driver.get("https://cs1632ex.herokuapp.com/fact");
+		driver.findElement(By.name("value")).sendKeys("101");
+		driver.findElement(By.xpath("/html/body/div/main/div/form/input[2]")).click();
+		String result = driver.findElement(By.className("jumbotron")).getText();
+		assertTrue(result.contains("Factorial of 101 is 1!"));
+	}
 
 
 }
