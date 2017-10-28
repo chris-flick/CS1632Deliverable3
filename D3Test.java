@@ -381,7 +381,7 @@ public class D3Test{
 	// Grabbing the first image on the page and reading the alt tag to verify that
 	// is an image of the Cathedral
 	@Test
-	public void CathyTest(){
+	public void cathyTest(){
 		driver.get("https://cs1632ex.herokuapp.com/cathy");
 		WebElement img = driver.findElement(By.xpath("//img[1]"));
 		String alt = img.getAttribute("alt");
