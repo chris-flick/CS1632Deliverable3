@@ -44,7 +44,7 @@ public class D3Test{
 
 
 	@Test
-	public void homepageWelcomeMessage(){
+	public void homepageWelcomeMessageTest(){
 
 		try{
 			WebElement e = driver.findElement(By.className("jumbotron"));
@@ -55,5 +55,12 @@ public class D3Test{
 		catch(NoSuchElementException nseex){
 			fail();
 		}
+	}
+
+	@Test
+	public void homeLinkTest(){
+		driver.findElement(By.linkTest("CS1632 D3 Home")).click();
+		String url = driver.getCurrentURL();
+		assertEquals("https://cs1632ex.herokuapp.com/", url);
 	}
 }
