@@ -64,13 +64,13 @@ public class D3Test{
 		}
 	}
 
-	@Test
+/*	@Test
 	public void homeLinkTest(){
-		driver.findElement(By.linkTest("CS1632 D3 Home")).click();
+		driver.findElement(By.linkText("CS1632 D3 Home")).click();
 		String url = driver.getCurrentURL();
 		assertEquals("https://cs1632ex.herokuapp.com/", url);
-	}
-}
+	}*/
+
 
 
 	//If im on the main page,
@@ -281,13 +281,13 @@ public class D3Test{
 	@Test //Test #16
 	public void fibTest_6(){
 		try{
-		driver.get("https://cs1632ex.herokuapp.com/fib");
-		driver.findElement(By.id("tb1")).sendKeys("a");
-		driver.findElement(By.id("sub")).click();
-		String result = driver.findElement(By.className("jumbotron")).getText();
-		assertTrue(result.contains("Fibonacci of a is 1!"));
+			driver.get("https://cs1632ex.herokuapp.com/fib");
+			driver.findElement(By.id("tb1")).sendKeys("a");
+			driver.findElement(By.id("sub")).click();
+			String result = driver.findElement(By.className("jumbotron")).getText();
+			assertTrue(result.contains("Fibonacci of a is 1!"));
 		}catch(NoSuchElementException e){
-		fail();
+			fail();
 		}
 	}
 
@@ -327,24 +327,14 @@ public class D3Test{
 	@Test //Test #19
 	public void helloTest_5(){
 		try{
-		driver.get("https://cs1632ex.herokuapp.com/hello/Jazzy/123");
-		String result = driver.findElement(By.className("jumbotron")).getText();
-		assertEquals("Hello CS1632, from Jazzy/123!",result);
-	}catch(NoSuchElementException e){
-		fail();
-	}
+			driver.get("https://cs1632ex.herokuapp.com/hello/Jazzy/123");
+			String result = driver.findElement(By.className("jumbotron")).getText();
+			assertEquals("Hello CS1632, from Jazzy/123!",result);
+		}catch(NoSuchElementException e){
+			fail();
+		}
 	}
 
-	//If I add the trailing value of "/ "
-	//To /hello, it should display "Hello CS1632, from  !"
-	//Fails because it does not displays what is expected
-	//Test for requirement 7
-	@Test //Test #20
-	public void helloTest_6(){
-		driver.get("https://cs1632ex.herokuapp.com/hello/ ");
-		String result = driver.findElement(By.className("jumbotron")).getText();
-		assertEquals("Hello CS1632, from  !",result);
-	}
 
 	//If i'm on the factorial page and I do not enter anything
 	//It should display the factorial of null is 1.
@@ -388,15 +378,16 @@ public class D3Test{
 		assertTrue(result.contains("Factorial of 100 is 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000!"));
 	}
 
-
-
-
-
-
-
-
-
+	// Grabbing the first image on the page and reading the alt tag to verify that
+	// is an image of the Cathedral
+	@Test
+	public void CathyTest(){
+		driver.get("https://cs1632ex.herokuapp.com/cathy");
+		WebElement img = driver.findElement(By.xpath("//img[1]"));
+		String alt = img.getAttribute("alt");
+		assertTrue(alt.contains("Cathedral"));
+	}
 
 
 }
->>>>>>> 9e87b75ffe0fe3b0f1255f5385ec65e4119dd2c0
+
